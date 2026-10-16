@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Birthday Surprise 🖤</title>
+<title>Happy Birthday, Brooo! 🫏</title>
 
 <style>
 * {
@@ -24,44 +24,59 @@ body {
   position: fixed;
   inset: 0;
   pointer-events: none;
+  z-index: 0;
   background-image:
     radial-gradient(#f5d58a 1px, transparent 1px),
-    radial-gradient(#ffffff 1px, transparent 1px);
-  background-size: 70px 70px, 110px 110px;
+    radial-gradient(#fff 1px, transparent 1px);
+  background-size: 65px 65px, 100px 100px;
   background-position: 0 0, 35px 45px;
-  opacity: 0.35;
+  opacity: 0.3;
 }
 
 main {
   position: relative;
-  max-width: 600px;
+  z-index: 1;
+  max-width: 650px;
   margin: auto;
-  padding: 90px 22px 60px;
-}
-
-.crown {
-  font-size: 48px;
-  animation: float 2s ease-in-out infinite;
+  padding: 35px 18px 55px;
 }
 
 h1 {
-  font-size: clamp(35px, 8vw, 55px);
-  margin: 20px 0;
+  font-size: clamp(34px, 8vw, 52px);
+  margin: 15px 0;
 }
 
-.gold {
-  color: #ffffff;
+h2 {
+  color: #ffe4a3;
 }
 
 .subtitle {
-  font-size: 19px;
+  color: #e2d7c4;
+  font-size: 17px;
   line-height: 1.8;
-  color: #d0c5b0;
+}
+
+.gold {
+  color: #f5d58a;
+}
+
+.donkey {
+  font-size: 100px;
+  margin: 5px;
+  animation: float 2s ease-in-out infinite;
+  filter: drop-shadow(0 0 15px #b99a5644);
+}
+
+.sunglasses {
+  font-size: 30px;
+  margin-top: -42px;
+  margin-bottom: 20px;
+  position: relative;
 }
 
 button {
-  margin-top: 25px;
-  padding: 15px 25px;
+  margin: 12px 5px;
+  padding: 14px 23px;
   background: #f5d58a;
   color: #111;
   border: none;
@@ -69,6 +84,7 @@ button {
   font-size: 16px;
   font-weight: bold;
   cursor: pointer;
+  transition: 0.2s;
 }
 
 button:hover {
@@ -76,34 +92,132 @@ button:hover {
   transform: scale(1.04);
 }
 
+button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.card {
+  background: #14120e;
+  border: 1px solid #9d8146;
+  border-radius: 20px;
+  padding: 22px;
+  margin-top: 22px;
+  box-shadow: 0 0 25px #f5d58a0d;
+}
+
+#game,
+#cakeSection,
+#finalSection {
+  display: none;
+}
+
+#game {
+  margin-top: 20px;
+}
+
+.balloon-area {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin: 25px auto;
+  max-width: 400px;
+}
+
+.balloon {
+  font-size: 55px;
+  padding: 10px 0;
+  border-radius: 18px;
+  cursor: pointer;
+  user-select: none;
+  transition: transform 0.15s;
+}
+
+.balloon:active {
+  transform: scale(0.7);
+}
+
+.balloon.popped {
+  visibility: hidden;
+  pointer-events: none;
+}
+
+#progress {
+  color: #fff0c5;
+  font-size: 16px;
+}
+
+#laughText {
+  font-size: 25px;
+  font-weight: bold;
+  color: #ffda85;
+  display: none;
+  animation: shake 0.25s infinite;
+}
+
+.cake {
+  font-size: 100px;
+  margin: 10px;
+  animation: float 2s infinite;
+}
+
+.candles {
+  font-size: 34px;
+  letter-spacing: 8px;
+  margin-bottom: -10px;
+}
+
 #letter {
   display: none;
-  margin-top: 35px;
-  padding: 25px;
-  background: #171512;
+  margin-top: 25px;
+  padding: 22px;
+  background: #17140f;
   border: 1px solid #b99a56;
   border-radius: 18px;
   color: #fff2d0;
   line-height: 1.9;
+  text-align: left;
   white-space: pre-wrap;
   overflow-wrap: anywhere;
   animation: appear 1s ease;
+  font-size: 16px;
 }
 
 footer {
-  margin-top: 45px;
+  margin-top: 40px;
   color: #b7a783;
   font-size: 14px;
 }
 
+.confetti {
+  position: fixed;
+  top: -20px;
+  z-index: 5;
+  pointer-events: none;
+  animation: fall 3s linear forwards;
+  font-size: 22px;
+}
+
 @keyframes float {
   0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
+  50% { transform: translateY(-9px); }
 }
 
 @keyframes appear {
   from { opacity: 0; transform: translateY(15px); }
   to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes shake {
+  0%, 100% { transform: rotate(-2deg); }
+  50% { transform: rotate(2deg); }
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(110vh) rotate(720deg);
+    opacity: 0;
+  }
 }
 </style>
 </head>
@@ -112,30 +226,77 @@ footer {
 <div class="stars"></div>
 
 <main>
-  <div class="crown">👑</div>
+  <p>✦ A SPECIAL BIRTHDAY SURPRISE ✦</p>
 
-  <p>✦ A LITTLE BIRTHDAY SURPRISE ✦</p>
+  <div class="donkey">🫏</div>
+  <div class="sunglasses">🕶️</div>
 
-  <h1>Happy Birthday,<br>
-  <span class="gold">Brooo! 🖤</span></h1>
+  <h1>Happy Birthday,<br><span class="gold">Brooo! 🖤</span></h1>
 
   <p class="subtitle">
-    Another year of you being donkey. 🫏😂<br>
+    Another year of you being donkey. 😂🫏<br>
     And somehow, you're still special!
   </p>
 
-  <p style="font-size:45px">🎂 🖤 ✨</p>
+  <div style="font-size:35px">🎂 🖤 ✨</div>
 
-  <p class="subtitle">
-    Your birthday comes with one tiny rule:<br>
-    You must open your surprise!
-  </p>
+  <section id="startSection" class="card">
+    <h2>Ready for your surprise? 👀</h2>
+    <p class="subtitle">
+      First, pop every balloon.<br>
+      But beware... something evil awaits. 🌚
+    </p>
+    <button onclick="startGame()">Start the Chaos 🎈</button>
+  </section>
 
-  <button onclick="openLetter()">
-    Open Your Surprise 💌
-  </button>
+  <section id="game" class="card">
+    <h2>POP ALL THE BALLOONS! 🎈</h2>
+    <p class="subtitle">Tap every balloon to pop it!</p>
 
-  <div id="letter"></div>
+    <div class="balloon-area" id="balloons"></div>
+
+    <p id="progress">Balloons remaining: 9</p>
+    <p id="laughText">BUHAHAHAHAHA! 🤡🌚</p>
+
+    <div id="afterPop" style="display:none">
+      <p class="subtitle">YOU SURVIVED THE CHAOS. 😂</p>
+      <button onclick="showCake()">Claim Your Cake 🎂</button>
+    </div>
+  </section>
+
+  <section id="cakeSection" class="card">
+    <h2>TA-DAAAAA! 🎉</h2>
+
+    <p class="subtitle">
+      A special cake for my favourite donkey! 🫏
+    </p>
+
+    <div class="candles" id="candles">🕯️🕯️🕯️</div>
+    <div class="cake">🎂</div>
+
+    <p class="subtitle" id="candleMessage">
+      Make a wish, Donkeyyy! 🌟
+    </p>
+
+    <button id="blowButton" onclick="blowCandles()">
+      Blow the Candles 💨
+    </button>
+  </section>
+
+  <section id="finalSection" class="card">
+    <h2>HAPPYYY BIRTHDAYYY! 🥳❤️</h2>
+
+    <p class="subtitle">
+      Another year older, but still a donkey. 😂🫏<br>
+      Never stop smiling, Brooo! 🖤
+    </p>
+
+    <div style="font-size:45px">🎉🎂🎈🖤</div>
+
+    <button onclick="openLetter()">Open Your Letter 💌</button>
+
+    <div id="letter"></div>
+  </section>
 
   <footer>
     Made with 🖤, friendship & a little madness.
@@ -143,22 +304,181 @@ footer {
 </main>
 
 <script>
+let remaining = 9;
+let audioContext;
+
+function getAudio() {
+  if (!audioContext) {
+    const AudioContextClass =
+      window.AudioContext || window.webkitAudioContext;
+
+    if (AudioContextClass) {
+      audioContext = new AudioContextClass();
+    }
+  }
+
+  if (audioContext && audioContext.state === "suspended") {
+    audioContext.resume();
+  }
+
+  return audioContext;
+}
+
+function playTone(frequency, duration, type = "sine", volume = 0.12) {
+  const ctx = getAudio();
+  if (!ctx) return;
+
+  const oscillator = ctx.createOscillator();
+  const gain = ctx.createGain();
+
+  oscillator.type = type;
+  oscillator.frequency.value = frequency;
+  gain.gain.setValueAtTime(volume, ctx.currentTime);
+  gain.gain.exponentialRampToValueAtTime(
+    0.001,
+    ctx.currentTime + duration
+  );
+
+  oscillator.connect(gain);
+  gain.connect(ctx.destination);
+
+  oscillator.start();
+  oscillator.stop(ctx.currentTime + duration);
+}
+
+function startGame() {
+  getAudio();
+
+  document.getElementById("startSection").style.display = "none";
+  document.getElementById("game").style.display = "block";
+
+  const area = document.getElementById("balloons");
+  const balloonEmojis = ["🎈", "🎈", "🎈", "🎈", "🎈", "🎈", "🎈", "🎈", "🎈"];
+
+  balloonEmojis.forEach((emoji, index) => {
+    const balloon = document.createElement("div");
+    balloon.className = "balloon";
+    balloon.textContent = emoji;
+    balloon.setAttribute("role", "button");
+    balloon.setAttribute("aria-label", "Pop balloon " + (index + 1));
+
+    balloon.onclick = function () {
+      if (balloon.classList.contains("popped")) return;
+
+      balloon.classList.add("popped");
+      playTone(520 + Math.random() * 250, 0.12, "triangle", 0.15);
+
+      remaining--;
+      document.getElementById("progress").textContent =
+        "Balloons remaining: " + remaining;
+
+      if (remaining === 0) {
+        finishGame();
+      }
+    };
+
+    area.appendChild(balloon);
+  });
+}
+
+function finishGame() {
+  document.getElementById("progress").textContent =
+    "ALL BALLOONS POPPED! 💥";
+
+  document.getElementById("laughText").style.display = "block";
+  document.getElementById("afterPop").style.display = "block";
+
+  villainLaugh();
+  makeConfetti();
+}
+
+function villainLaugh() {
+  // A cartoon-style synthesized villain laugh.
+  const ctx = getAudio();
+  if (!ctx) return;
+
+  const notes = [
+    [180, 0.00], [130, 0.16],
+    [190, 0.34], [135, 0.50],
+    [210, 0.68], [145, 0.85],
+    [180, 1.04], [110, 1.22]
+  ];
+
+  notes.forEach(([frequency, delay]) => {
+    setTimeout(() => {
+      playTone(frequency, 0.18, "sawtooth", 0.07);
+    }, delay * 1000);
+  });
+}
+
+function showCake() {
+  document.getElementById("game").style.display = "none";
+  document.getElementById("cakeSection").style.display = "block";
+
+  playTone(523, 0.2);
+  setTimeout(() => playTone(659, 0.2), 200);
+  setTimeout(() => playTone(784, 0.35), 400);
+
+  makeConfetti();
+}
+
+function blowCandles() {
+  getAudio();
+
+  document.getElementById("candles").textContent = "✨💨✨";
+  document.getElementById("candleMessage").textContent =
+    "WISH GRANTED! 🌟 Happy birthday, Donkeyyy! ❤️";
+
+  document.getElementById("blowButton").disabled = true;
+  document.getElementById("blowButton").textContent =
+    "Candles Blown! 🎉";
+
+  playTone(700, 0.12, "sine", 0.12);
+  setTimeout(() => playTone(500, 0.2, "sine", 0.12), 120);
+  setTimeout(() => playTone(750, 0.3, "sine", 0.12), 250);
+
+  makeConfetti();
+
+  setTimeout(() => {
+    document.getElementById("cakeSection").style.display = "none";
+    document.getElementById("finalSection").style.display = "block";
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, 1600);
+}
+
+function makeConfetti() {
+  const symbols = ["✨", "🎉", "💛", "🖤", "🎊"];
+
+  for (let i = 0; i < 24; i++) {
+    const item = document.createElement("div");
+    item.className = "confetti";
+    item.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+    item.style.left = Math.random() * 100 + "vw";
+    item.style.animationDuration = (2 + Math.random() * 2) + "s";
+
+    document.body.appendChild(item);
+
+    setTimeout(() => item.remove(), 4500);
+  }
+}
+
 function openLetter() {
   const letter = document.getElementById("letter");
 
-  if (letter.style.display === "block") {
-    letter.style.display = "none";
-    return;
-  }
-
   letter.textContent =
-    "💌 YOUR LETTER GOES HERE 💌\n\n" +
-    "Your personal birthday letter will appear here. 🖤\n\n" +
-    "We'll replace this with your own words!";
-    
+`Happy Birthdayyy, my Donkeyyy 😭🎂❤️🫏
+May your life be filled with happiness, success, crazy memories, and unlimited cake! 😂💗 Stay the same silly, annoying, and adorable donkey you are. May all your dreams come true, and may you always have reasons to smile. 😊❤️
+Thank youuuu sooo much for listening to my nonsense 😜😂You have no idea how much I appreciate it! 
+No matter how much I tease you, you're still not a human 🌚. Keep annoying me forever, because who else will do that job so perfectly? 🤡😂
+And whenever you feel low, angry, lonely, or when life gets a little crazy, no matter what's happening or whether it's right or wrong, just send me one text. 🤞🏼 I'll listen without judging, support you, and care for you. You don't have to go through everything alone.  
+Once again, HAPPYYY BIRTHDAYYY, DONKEYYY! 🫏🎉❤️😂
+                              ~with lots of gratitude 🌝`;
+
   letter.style.display = "block";
+  letter.scrollIntoView({ behavior: "smooth", block: "start" });
+
+  makeConfetti();
 }
 </script>
-
 </body>
 </html>
