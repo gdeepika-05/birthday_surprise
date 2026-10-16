@@ -616,6 +616,137 @@ Once again, HAPPYYY BIRTHDAYYY, DONKEYYY! 🫏🎉❤️😂
 }
 </script>
 </body>
+</html>lue;
+      }
+
+      const volume = Math.sqrt(sum / data.length);
+
+      if (samples < 12) {
+        baseline += volume / 12;
+        samples++;
+        return;
+      }
+
+      // A sustained sound above the initial ambient level is
+      // treated as a possible blow. Microphone behaviour varies.
+      const threshold = Math.max(0.045, baseline * 2.8);
+
+      if (volume > threshold) {
+        blowDetected = true;
+        finishBlowingDetection();
+      }
+    }, 100);
+
+  } catch (error) {
+    stopMicrophone();
+
+    button.disabled = false;
+    status.textContent =
+      "Microphone access failed. Allow microphone permission in your browser settings, then try again.";
+  }
+}
+
+function finishBlowingDetection() {
+  if (!blowCheckTimer) return;
+
+  clearInterval(blowCheckTimer);
+  blowCheckTimer = null;
+
+  stopMicrophone();
+
+  if (blowDetected) {
+    blowDetected = false;
+    blowCandles();
+  }
+}
+
+function stopMicrophone() {
+  if (micStream) {
+    micStream.getTracks().forEach(track => track.stop());
+    micStream = null;
+  }
+
+  micAnalyser = null;
+  micSource = null;
+
+  if (micContext) {
+    micContext.close();
+    micContext = null;
+  }
+}
+
+function blowCandles() {
+  const button = document.getElementById("blowButton");
+
+  button.disabled = true;
+
+  document.getElementById("candles").textContent = "✨💨✨";
+
+  document.getElementById("candleMessage").textContent =
+    "YOU DID IT! WISH GRANTED! 🌟❤️";
+
+  document.getElementById("micStatus").textContent =
+    "Candles blown! Happy Birthday, Donkeyyy! 🎉";
+
+  playTone(700, 0.12, "sine", 0.12);
+  setTimeout(() => playTone(500, 0.2, "sine", 0.12), 120);
+  setTimeout(() => playTone(750, 0.3, "sine", 0.12), 250);
+
+  makeConfetti();
+
+  setTimeout(() => {
+    document.getElementById("cakeSection").style.display = "none";
+    document.getElementById("finalSection").style.display = "block";
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  }, 1800);
+}
+
+function makeConfetti() {
+  const symbols = ["✨", "🎉", "💛", "🖤", "🎊"];
+
+  for (let i = 0; i < 24; i++) {
+    const item = document.createElement("div");
+
+    item.className = "confetti";
+    item.textContent =
+      symbols[Math.floor(Math.random() * symbols.length)];
+
+    item.style.left = Math.random() * 100 + "vw";
+    item.style.animationDuration =
+      (2 + Math.random() * 2) + "s";
+
+    document.body.appendChild(item);
+
+    setTimeout(() => item.remove(), 4500);
+  }
+}
+
+function openLetter() {
+  const letter = document.getElementById("letter");
+
+  letter.textContent =
+`Happy Birthdayyy, my Donkeyyy 😭🎂❤️🫏
+May your life be filled with happiness, success, crazy memories, and unlimited cake! 😂💗 Stay the same silly, annoying, and adorable donkey you are. May all your dreams come true, and may you always have reasons to smile. 😊❤️
+Thank youuuu sooo much for listening to my nonsense 😜😂You have no idea how much I appreciate it! 
+No matter how much I tease you, you're still not a human 🌚. Keep annoying me forever, because who else will do that job so perfectly? 🤡😂
+And whenever you feel low, angry, lonely, or when life gets a little crazy, no matter what's happening or whether it's right or wrong, just send me one text. 🤞🏼 I'll listen without judging, support you, and care for you. You don't have to go through everything alone.  
+Once again, HAPPYYY BIRTHDAYYY, DONKEYYY! 🫏🎉❤️😂
+                              ~with lots of gratitude 🌝`;
+
+  letter.style.display = "block";
+  letter.scrollIntoView({
+    behavior: "smooth",
+    block: "start"
+  });
+
+  makeConfetti();
+}
+</script>
+</body>
 </html>u have no idea how much I appreciate it! 
 No matter how much I tease you, you're still not a human 🌚. Keep annoying me forever, because who else will do that job so perfectly? 🤡😂
 And whenever you feel low, angry, lonely, or when life gets a little crazy, no matter what's happening or whether it's right or wrong, just send me one text. 🤞🏼 I'll listen without judging, support you, and care for you. You don't have to go through everything alone.  
