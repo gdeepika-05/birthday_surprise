@@ -24,10 +24,9 @@ body {
   position: fixed;
   inset: 0;
   pointer-events: none;
-  z-index: 0;
   background-image:
     radial-gradient(#f5d58a 1px, transparent 1px),
-    radial-gradient(#fff 1px, transparent 1px);
+    radial-gradient(#ffffff 1px, transparent 1px);
   background-size: 65px 65px, 100px 100px;
   background-position: 0 0, 35px 45px;
   opacity: 0.3;
@@ -35,7 +34,6 @@ body {
 
 main {
   position: relative;
-  z-index: 1;
   max-width: 650px;
   margin: auto;
   padding: 35px 18px 55px;
@@ -56,27 +54,22 @@ h2 {
   line-height: 1.8;
 }
 
-.gold {
-  color: #f5d58a;
-}
-
 .donkey {
   font-size: 100px;
-  margin: 5px;
+  margin: 8px 0 0;
   animation: float 2s ease-in-out infinite;
-  filter: drop-shadow(0 0 15px #b99a5644);
 }
 
 .sunglasses {
-  font-size: 30px;
-  margin-top: -42px;
-  margin-bottom: 20px;
+  font-size: 36px;
+  margin-top: -43px;
+  margin-bottom: 15px;
   position: relative;
 }
 
 button {
   margin: 12px 5px;
-  padding: 14px 23px;
+  padding: 14px 22px;
   background: #f5d58a;
   color: #111;
   border: none;
@@ -84,16 +77,15 @@ button {
   font-size: 16px;
   font-weight: bold;
   cursor: pointer;
-  transition: 0.2s;
 }
 
 button:hover {
   background: white;
-  transform: scale(1.04);
+  transform: scale(1.03);
 }
 
 button:disabled {
-  opacity: 0.5;
+  opacity: 0.6;
   cursor: default;
 }
 
@@ -101,7 +93,7 @@ button:disabled {
   background: #14120e;
   border: 1px solid #9d8146;
   border-radius: 20px;
-  padding: 22px;
+  padding: 22px 16px;
   margin-top: 22px;
   box-shadow: 0 0 25px #f5d58a0d;
 }
@@ -112,22 +104,17 @@ button:disabled {
   display: none;
 }
 
-#game {
-  margin-top: 20px;
-}
-
 .balloon-area {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 10px;
-  margin: 25px auto;
   max-width: 400px;
+  margin: 25px auto;
 }
 
 .balloon {
   font-size: 55px;
   padding: 10px 0;
-  border-radius: 18px;
   cursor: pointer;
   user-select: none;
   transition: transform 0.15s;
@@ -144,14 +131,13 @@ button:disabled {
 
 #progress {
   color: #fff0c5;
-  font-size: 16px;
 }
 
 #laughText {
+  display: none;
+  color: #ffda85;
   font-size: 25px;
   font-weight: bold;
-  color: #ffda85;
-  display: none;
   animation: shake 0.25s infinite;
 }
 
@@ -162,9 +148,14 @@ button:disabled {
 }
 
 .candles {
-  font-size: 34px;
-  letter-spacing: 8px;
+  font-size: 35px;
+  letter-spacing: 6px;
   margin-bottom: -10px;
+}
+
+#micStatus {
+  color: #e2d7c4;
+  line-height: 1.7;
 }
 
 #letter {
@@ -191,7 +182,7 @@ footer {
 
 .confetti {
   position: fixed;
-  top: -20px;
+  top: -25px;
   z-index: 5;
   pointer-events: none;
   animation: fall 3s linear forwards;
@@ -231,7 +222,9 @@ footer {
   <div class="donkey">🫏</div>
   <div class="sunglasses">🕶️</div>
 
-  <h1>Happy Birthday,<br><span class="gold">Brooo! 🖤</span></h1>
+  <h1>Happy Birthday,<br>
+    <span style="color:#f5d58a">Brooo! 🖤</span>
+  </h1>
 
   <p class="subtitle">
     Another year of you being donkey. 😂🫏<br>
@@ -244,7 +237,7 @@ footer {
     <h2>Ready for your surprise? 👀</h2>
     <p class="subtitle">
       First, pop every balloon.<br>
-      But beware... something evil awaits. 🌚
+      But beware... something evil awaits! 🌚
     </p>
     <button onclick="startGame()">Start the Chaos 🎈</button>
   </section>
@@ -256,10 +249,10 @@ footer {
     <div class="balloon-area" id="balloons"></div>
 
     <p id="progress">Balloons remaining: 9</p>
-    <p id="laughText">BUHAHAHAHAHA! 🤡🌚</p>
+    <p id="laughText">BUAHAHAHAHAHA! 🤡🌚</p>
 
     <div id="afterPop" style="display:none">
-      <p class="subtitle">YOU SURVIVED THE CHAOS. 😂</p>
+      <p class="subtitle">YOU SURVIVED THE CHAOS! 😂</p>
       <button onclick="showCake()">Claim Your Cake 🎂</button>
     </div>
   </section>
@@ -271,16 +264,20 @@ footer {
       A special cake for my favourite donkey! 🫏
     </p>
 
-    <div class="candles" id="candles">🕯️🕯️🕯️</div>
+    <div class="candles" id="candles">🕯️ 🕯️ 🕯️</div>
     <div class="cake">🎂</div>
 
     <p class="subtitle" id="candleMessage">
       Make a wish, Donkeyyy! 🌟
     </p>
 
-    <button id="blowButton" onclick="blowCandles()">
-      Blow the Candles 💨
+    <button id="blowButton" onclick="startBlowingDetection()">
+      🎤 Enable Microphone & Blow!
     </button>
+
+    <p id="micStatus">
+      Tap the button, allow microphone access, then gently blow towards your phone's microphone. 💨
+    </p>
   </section>
 
   <section id="finalSection" class="card">
@@ -305,19 +302,24 @@ footer {
 
 <script>
 let remaining = 9;
-let audioContext;
+let audioContext = null;
+let micStream = null;
+let micContext = null;
+let micAnalyser = null;
+let micSource = null;
+let blowCheckTimer = null;
+let blowDetected = false;
 
 function getAudio() {
-  if (!audioContext) {
-    const AudioContextClass =
-      window.AudioContext || window.webkitAudioContext;
+  const AudioClass = window.AudioContext || window.webkitAudioContext;
 
-    if (AudioContextClass) {
-      audioContext = new AudioContextClass();
-    }
+  if (!AudioClass) return null;
+
+  if (!audioContext) {
+    audioContext = new AudioClass();
   }
 
-  if (audioContext && audioContext.state === "suspended") {
+  if (audioContext.state === "suspended") {
     audioContext.resume();
   }
 
@@ -333,6 +335,7 @@ function playTone(frequency, duration, type = "sine", volume = 0.12) {
 
   oscillator.type = type;
   oscillator.frequency.value = frequency;
+
   gain.gain.setValueAtTime(volume, ctx.currentTime);
   gain.gain.exponentialRampToValueAtTime(
     0.001,
@@ -353,22 +356,27 @@ function startGame() {
   document.getElementById("game").style.display = "block";
 
   const area = document.getElementById("balloons");
-  const balloonEmojis = ["🎈", "🎈", "🎈", "🎈", "🎈", "🎈", "🎈", "🎈", "🎈"];
+  area.innerHTML = "";
 
-  balloonEmojis.forEach((emoji, index) => {
+  remaining = 9;
+
+  for (let i = 0; i < 9; i++) {
     const balloon = document.createElement("div");
+
     balloon.className = "balloon";
-    balloon.textContent = emoji;
+    balloon.textContent = "🎈";
     balloon.setAttribute("role", "button");
-    balloon.setAttribute("aria-label", "Pop balloon " + (index + 1));
+    balloon.setAttribute("aria-label", "Pop balloon " + (i + 1));
 
     balloon.onclick = function () {
       if (balloon.classList.contains("popped")) return;
 
       balloon.classList.add("popped");
-      playTone(520 + Math.random() * 250, 0.12, "triangle", 0.15);
+
+      playTone(650, 0.12, "triangle", 0.15);
 
       remaining--;
+
       document.getElementById("progress").textContent =
         "Balloons remaining: " + remaining;
 
@@ -378,7 +386,7 @@ function startGame() {
     };
 
     area.appendChild(balloon);
-  });
+  }
 }
 
 function finishGame() {
@@ -393,22 +401,20 @@ function finishGame() {
 }
 
 function villainLaugh() {
-  // A cartoon-style synthesized villain laugh.
-  const ctx = getAudio();
-  if (!ctx) return;
-
+  // Cartoon-style electronic villain laugh.
+  // This is a synthesized effect, not a recorded human voice.
   const notes = [
-    [180, 0.00], [130, 0.16],
-    [190, 0.34], [135, 0.50],
-    [210, 0.68], [145, 0.85],
-    [180, 1.04], [110, 1.22]
+    [190, 0], [135, 160],
+    [210, 340], [140, 500],
+    [220, 680], [145, 850],
+    [190, 1040], [115, 1220]
   ];
 
   notes.forEach(([frequency, delay]) => {
     setTimeout(() => {
       playTone(frequency, 0.18, "sawtooth", 0.07);
-    }, delay * 1000);
-  });
+    }, delay);
+  }
 }
 
 function showCake() {
@@ -422,16 +428,134 @@ function showCake() {
   makeConfetti();
 }
 
+async function startBlowingDetection() {
+  const status = document.getElementById("micStatus");
+  const button = document.getElementById("blowButton");
+
+  if (blowCheckTimer) return;
+
+  if (!navigator.mediaDevices ||
+      !navigator.mediaDevices.getUserMedia) {
+    status.textContent =
+      "Microphone unavailable. Open this website in a browser that supports microphone access over HTTPS.";
+    return;
+  }
+
+  button.disabled = true;
+  status.textContent = "Requesting microphone permission... 🎤";
+
+  try {
+    micStream = await navigator.mediaDevices.getUserMedia({
+      audio: {
+        echoCancellation: false,
+        noiseSuppression: false,
+        autoGainControl: false
+      }
+    });
+
+    const AudioClass = window.AudioContext || window.webkitAudioContext;
+
+    if (!AudioClass) {
+      throw new Error("Audio analysis is not supported.");
+    }
+
+    micContext = new AudioClass();
+    await micContext.resume();
+
+    micAnalyser = micContext.createAnalyser();
+    micAnalyser.fftSize = 1024;
+
+    micSource = micContext.createMediaStreamSource(micStream);
+    micSource.connect(micAnalyser);
+
+    const data = new Uint8Array(micAnalyser.fftSize);
+
+    let baseline = 0;
+    let samples = 0;
+
+    status.textContent =
+      "Microphone is on! Gently blow towards your phone's microphone. 💨";
+
+    blowCheckTimer = setInterval(() => {
+      if (!micAnalyser) return;
+
+      micAnalyser.getByteTimeDomainData(data);
+
+      let sum = 0;
+
+      for (let i = 0; i < data.length; i++) {
+        const value = (data[i] - 128) / 128;
+        sum += value * value;
+      }
+
+      const volume = Math.sqrt(sum / data.length);
+
+      if (samples < 12) {
+        baseline += volume / 12;
+        samples++;
+        return;
+      }
+
+      // A sustained sound above the initial ambient level is
+      // treated as a possible blow. Microphone behaviour varies.
+      const threshold = Math.max(0.045, baseline * 2.8);
+
+      if (volume > threshold) {
+        blowDetected = true;
+        finishBlowingDetection();
+      }
+    }, 100);
+
+  } catch (error) {
+    stopMicrophone();
+
+    button.disabled = false;
+    status.textContent =
+      "Microphone access failed. Allow microphone permission in your browser settings, then try again.";
+  }
+}
+
+function finishBlowingDetection() {
+  if (!blowCheckTimer) return;
+
+  clearInterval(blowCheckTimer);
+  blowCheckTimer = null;
+
+  stopMicrophone();
+
+  if (blowDetected) {
+    blowDetected = false;
+    blowCandles();
+  }
+}
+
+function stopMicrophone() {
+  if (micStream) {
+    micStream.getTracks().forEach(track => track.stop());
+    micStream = null;
+  }
+
+  micAnalyser = null;
+  micSource = null;
+
+  if (micContext) {
+    micContext.close();
+    micContext = null;
+  }
+}
+
 function blowCandles() {
-  getAudio();
+  const button = document.getElementById("blowButton");
+
+  button.disabled = true;
 
   document.getElementById("candles").textContent = "✨💨✨";
-  document.getElementById("candleMessage").textContent =
-    "WISH GRANTED! 🌟 Happy birthday, Donkeyyy! ❤️";
 
-  document.getElementById("blowButton").disabled = true;
-  document.getElementById("blowButton").textContent =
-    "Candles Blown! 🎉";
+  document.getElementById("candleMessage").textContent =
+    "YOU DID IT! WISH GRANTED! 🌟❤️";
+
+  document.getElementById("micStatus").textContent =
+    "Candles blown! Happy Birthday, Donkeyyy! 🎉";
 
   playTone(700, 0.12, "sine", 0.12);
   setTimeout(() => playTone(500, 0.2, "sine", 0.12), 120);
@@ -442,8 +566,12 @@ function blowCandles() {
   setTimeout(() => {
     document.getElementById("cakeSection").style.display = "none";
     document.getElementById("finalSection").style.display = "block";
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }, 1600);
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  }, 1800);
 }
 
 function makeConfetti() {
@@ -451,10 +579,14 @@ function makeConfetti() {
 
   for (let i = 0; i < 24; i++) {
     const item = document.createElement("div");
+
     item.className = "confetti";
-    item.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+    item.textContent =
+      symbols[Math.floor(Math.random() * symbols.length)];
+
     item.style.left = Math.random() * 100 + "vw";
-    item.style.animationDuration = (2 + Math.random() * 2) + "s";
+    item.style.animationDuration =
+      (2 + Math.random() * 2) + "s";
 
     document.body.appendChild(item);
 
@@ -469,6 +601,22 @@ function openLetter() {
 `Happy Birthdayyy, my Donkeyyy 😭🎂❤️🫏
 May your life be filled with happiness, success, crazy memories, and unlimited cake! 😂💗 Stay the same silly, annoying, and adorable donkey you are. May all your dreams come true, and may you always have reasons to smile. 😊❤️
 Thank youuuu sooo much for listening to my nonsense 😜😂You have no idea how much I appreciate it! 
+No matter how much I tease you, you're still not a human 🌚. Keep annoying me forever, because who else will do that job so perfectly? 🤡😂
+And whenever you feel low, angry, lonely, or when life gets a little crazy, no matter what's happening or whether it's right or wrong, just send me one text. 🤞🏼 I'll listen without judging, support you, and care for you. You don't have to go through everything alone.  
+Once again, HAPPYYY BIRTHDAYYY, DONKEYYY! 🫏🎉❤️😂
+                              ~with lots of gratitude 🌝`;
+
+  letter.style.display = "block";
+  letter.scrollIntoView({
+    behavior: "smooth",
+    block: "start"
+  });
+
+  makeConfetti();
+}
+</script>
+</body>
+</html>u have no idea how much I appreciate it! 
 No matter how much I tease you, you're still not a human 🌚. Keep annoying me forever, because who else will do that job so perfectly? 🤡😂
 And whenever you feel low, angry, lonely, or when life gets a little crazy, no matter what's happening or whether it's right or wrong, just send me one text. 🤞🏼 I'll listen without judging, support you, and care for you. You don't have to go through everything alone.  
 Once again, HAPPYYY BIRTHDAYYY, DONKEYYY! 🫏🎉❤️😂
